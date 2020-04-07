@@ -180,10 +180,22 @@ function Home({ history, match, location }) {
                 }
             });
             setDataBkkbnDocs(query.docs)
+            let id = _id;
+
+            // API DELETE
+            fetch('http://delete-postgre-service-bkkbn-dev.apps.openshift4.ogya-rnd.com/api/v1/delete?_id=' + _id, {
+                method: 'DELETE'
+            })
+            .then(respone => {
+                respone.json()
+            })
+            .then(data => {
+            })
+            .catch(e => console.error(e))
 
             let userDelete = metadata.name;
             let userDataDelete = 9;
-            let id = _id;
+            
             fetch('http://push-web-notification-service-bkkbn-dev.apps.openshift4.ogya-rnd.com/api/v1/pushnotification', {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
